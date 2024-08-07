@@ -18,7 +18,7 @@ class Account(AbstractUser):
     phone_number = PhoneNumberField(_("رقم الهاتف"),unique=True)
     email = models.EmailField(_("البريد الالكتروني"), max_length=254 ,unique=True)
     image = models.ImageField(_("صورة الملف الشخصي"), upload_to='images/accounts',blank= True , null=True)
-    directorate = models.ForeignKey(Directorate, verbose_name=_("المدينة"), on_delete=models.CASCADE ,blank= True , null=True)
+   ##directorate = models.ForeignKey(Directorate, verbose_name=_("المدينة"), on_delete=models.CASCADE ,blank= True , null=True)
     create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     def get_absolute_url(self):
