@@ -4,6 +4,8 @@ from accounts.models import Website , Market , GlobalWebsite
 from department.models import Department
 from django.urls import reverse
 from places.models import Status
+import datetime
+
 # Create your models here.
 
 class CurrencyType(models.Model):
