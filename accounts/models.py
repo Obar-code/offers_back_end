@@ -19,7 +19,7 @@ class Account(AbstractUser):
     email = models.EmailField(_("البريد الالكتروني"), max_length=254 ,unique=True)
     image = models.ImageField(_("صورة الملف الشخصي"), upload_to='images/accounts',blank= True , null=True)
    ##directorate = models.ForeignKey(Directorate, verbose_name=_("المدينة"), on_delete=models.CASCADE ,blank= True , null=True)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     def get_absolute_url(self):
         return reverse("Account_detail", kwargs={"pk": self.pk})
@@ -43,7 +43,7 @@ class Website(models.Model):
     instagram = models.URLField(_("انستقرام"), max_length=200,blank=True)
     tiktok = models.URLField(_("منصة تكتك"), max_length=200,blank=True)
     whatsapp = models.URLField(_("واتساب"), max_length=200,blank=True)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("الموقع الالكتروني ")
@@ -73,7 +73,7 @@ class Market(models.Model):
     instagram = models.URLField(_("انستقرام"), max_length=200,blank=True)
     tiktok = models.URLField(_("منصة تكتك"), max_length=200,blank=True)
     whatsapp = models.URLField(_("واتساب"), max_length=200,blank=True)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("محل تجاري")
@@ -91,7 +91,7 @@ class GlobalWebsite(models.Model):
     name_en = models.CharField(_("اسم الموقع بالانجلزي"), max_length=50)
     status = models.IntegerField(_("حالة المحل التجاري"), choices=Status.choices ,default=2)
     link = models.URLField(_("رابط الموقع"), max_length=200)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("الموقع العالمي")
