@@ -130,7 +130,7 @@ class GlobalCoupon(models.Model):
     terms_of_use_en = models.TextField(_("شروط الاستخدام بالانجلزي"), blank=True , null=True)
     use = models.IntegerField(_("عدد الاستخدام "))
     duration = models.DateTimeField(_("تاريخ انتهاء القسيمة"), auto_now=False, auto_now_add=False)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),default=timezone.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("الكوبون العالمي")
