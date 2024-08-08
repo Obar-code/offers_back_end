@@ -4,7 +4,7 @@ from accounts.models import Website , Market , GlobalWebsite
 from department.models import Department
 from django.urls import reverse
 from places.models import Status
-import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -16,7 +16,7 @@ class CurrencyType(models.Model):
     status = models.ImageField(_("حالة العرض"),choices=Status.choices ,default=2)
     cut_en = models.CharField(_("اختصار العملة بالانجلزي"), max_length=50 ,blank=True , null=True)
     icon = models.ImageField(_("رمز العملة"), upload_to='image/currency',)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),default=timezone.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), null=True, blank=True)
     class Meta:
         verbose_name = _("نوع العملة")
@@ -46,7 +46,7 @@ class Offer(models.Model):
     price_after = models.DecimalField(_("السعر قبل"), max_digits=10, decimal_places=2)
     currency_type = models.ForeignKey(CurrencyType, verbose_name=_("نوع العملة"), on_delete=models.CASCADE)
     distinct = models.BooleanField(_("هل العرض مميز") , default=False)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),default=timezone.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), null=True, blank=True)
 
     class Meta:
@@ -76,7 +76,7 @@ class Coupon(models.Model):
     terms_of_use_en = models.TextField(_("شروط الاستخدام بالانجلزي"), blank=True , null=True)
     duration = models.DateTimeField(_("تاريخ انتهاء القسيمة"), auto_now=False, auto_now_add=False)
     use = models.IntegerField(_("عدد الاستخدام "))
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),default=timezone.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("القسيمة")
@@ -103,7 +103,7 @@ class LocalCoupon(models.Model):
     terms_of_use_en = models.TextField(_("شروط الاستخدام بالانجلزي"), blank=True , null=True)
     use = models.IntegerField(_("عدد الاستخدام "))
     duration = models.DateTimeField(_("تاريخ انتهاء القسيمة"), auto_now=False, auto_now_add=False)
-    create_at = models.DateTimeField(_("تاريخ الانشاء"),auto_now_add=True, default=datetime.datetime.now)
+    create_at = models.DateTimeField(_("تاريخ الانشاء"),default=timezone.now)
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     class Meta:
         verbose_name = _("القسائم المحلية")
