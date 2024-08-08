@@ -24,6 +24,16 @@ class Account(AbstractUser):
     updated_at = models.DateTimeField(_("تاريخ التعديل"), auto_now=True)
     def get_absolute_url(self):
         return reverse("Account_detail", kwargs={"pk": self.pk})
+    def to_python(self, value):
+        if isinstance(value, str):
+            try:
+                return parse(value)
+            except ValueError:
+                pass
+        return super().to_python(value)
+
+    def get_absolute_url(self):
+        return reverse("Account_detail", kwargs={"pk": self.pk})    
 
 
 class Website(models.Model):
